@@ -27,4 +27,4 @@ jobs:
         # pip install -r requirements.txt
 
     - name: Run Python script
-      run: python printhello/script.py
+      run: python /home/runner/work/printhello/printhello/script.py
