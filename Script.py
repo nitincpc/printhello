@@ -1,5 +1,4 @@
 # script.py
-
 import datetime
 
 def main():
