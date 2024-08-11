@@ -1,20 +1,30 @@
-name: Print Hello Workflow
+# .github/workflows/schedule.yml
+
+name: Schedule Python Script
 
 on:
-  push:
-    branches:
-      - main  # Trigger the workflow on push to the main branch
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  schedule:
+    - cron: "0 0 * * *"  # This runs the workflow at 00:00 UTC every day
+  workflow_dispatch:       # This allows manual triggering of the workflow
 
 jobs:
-  say-hello:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        repository: your-username/printhello  # Replace 'your-username' with your GitHub username
 
-    - name: Print Hello
-      run: echo "Hello, World!"
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # Add any dependencies if needed
+        # pip install -r requirements.txt
+
+    - name: Run Python script
+      run: python script.py
